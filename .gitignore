@@ -120,6 +120,11 @@ venv.bak/
 # mkdocs documentation
 /site
 
+#
+efficientnetv2-m/
+projects/Skin-Cancer-HAM10000/Resampled_HAM10000/
+projects/Skin-Cancer-HAM10000/models/
+
 # mypy
 .mypy_cache/
 .dmypy.json
