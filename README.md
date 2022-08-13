@@ -25,10 +25,10 @@
 
 https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T 
 <br>
+<br>
 However, we have used 
 <a href="https://drive.google.com/file/d/1OqRiuFArflpw-8Anm2UV4EdyfS77ANTA/view?usp=sharing">Resampled HAM10000</a>
  dataset created by <a href="https://github.com/martian-antillia/ImageDatasetResampler">ImageDatasetResampler</a>.
-<br>
 <br>
 <br>We use python 3.8 and tensorflow 2.8.0 environment on Windows 11.<br>
   
