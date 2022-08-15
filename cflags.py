@@ -46,6 +46,8 @@ def define_flags():
   flags.DEFINE_string('best_model_name', 'best_model.5h', 'Best model name.')
   flags.DEFINE_integer('num_classes', 10, 'Number of classes.')
   flags.DEFINE_float('learning_rate',  0.005, 'Learning rate.')
+  # 2022/08/14
+  flags.DEFINE_float('dropout_rate',  0.3, 'Dropout rate.')
 
   flags.DEFINE_integer('image_size', 384, 'Image size. 384 if model_name==efficientnetv2-s')
   flags.DEFINE_integer('batch_size', 8, 'Number of batch_size.')

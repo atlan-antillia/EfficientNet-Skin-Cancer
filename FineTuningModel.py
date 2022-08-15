@@ -28,6 +28,7 @@ from absl import logging
 import numpy as np
 import tensorflow as tf
 from effnetv2_model import EffNetV2Model
+FLAGS = flags.FLAGS
 
 import cflags
 import datasets
@@ -89,13 +90,14 @@ class FineTuningModel:
           layer.trainable = True
 
     self.show_layers()
-
     input_shape = [image_size, image_size, 3]
 
     self.model = tf.keras.models.Sequential([
       tf.keras.layers.InputLayer(input_shape=input_shape, name='image', dtype=tf.float32),
       self.base_model,
-      tf.keras.layers.Dropout(rate=0.2),
+      tf.keras.layers.Dropout(FLAGS.dropout_rate),
+      #tf.keras.layers.Dropout(rate=0.3),
+
       tf.keras.layers.Dense(num_classes, 
                           name       = "predictions",
                           kernel_regularizer=tf.keras.regularizers.l2(0.0001))

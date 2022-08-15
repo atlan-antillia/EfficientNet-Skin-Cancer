@@ -166,7 +166,7 @@ python ../../EfficientNetV2ModelTrainer.py ^
   --model_name=efficientnetv2-m  ^
   --data_generator_config=./data_generator.config ^
   --ckpt_dir=../../efficientnetv2-m/model ^
-  --optimizer=adam ^
+  --optimizer=rmsprop ^
   --image_size=384 ^
   --eval_image_size=480 ^
   --data_dir=./Resampled_HAM10000/Training ^
@@ -176,14 +176,15 @@ python ../../EfficientNetV2ModelTrainer.py ^
   --monitor=val_loss ^
   --learning_rate=0.0001 ^
   --trainable_layers_ratio=0.4 ^
+  --dropout_rate=0.3 ^
   --num_epochs=50 ^
   --batch_size=4 ^
-  --patience=10 ^
+  --patience=12 ^
   --debug=True  
-
 </pre>
 , where data_generator.config is the following:<br>
 <pre>
+; data_generation.config
 ; data_generation.config
 
 [training]
@@ -193,7 +194,7 @@ samplewise_center  = False
 featurewise_std_normalization=True
 samplewise_std_normalization =False
 zca_whitening                =False
-rotation_range     = 30
+rotation_range     = 180
 horizontal_flip    = True
 vertical_flip      = True
  
@@ -211,7 +212,7 @@ samplewise_center  = False
 featurewise_std_normalization=True
 samplewise_std_normalization =False
 zca_whitening                =False
-rotation_range     = 30
+rotation_range     = 180
 horizontal_flip    = True
 vertical_flip      = True
 width_shift_range  = 0.1
@@ -231,14 +232,14 @@ Furthermore, it will generate a <a href="./projects/Skin-Cancer-HAM10000/eval/tr
 and <a href="./projects/Skin-Cancer-HAM10000/eval/train_losses.csv">train_losses</a> files
 <br>
 Training console output:<br>
-<img src="./asset/Skin_Cancer_train_console_output_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_train_console_output_at_epoch_35_0815.png" width="740" height="auto"><br>
 <br>
 Train_accuracies:<br>
-<img src="./asset/Skin_Cancer_accuracies_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_accuracies_at_epoch_35_0815.png" width="740" height="auto"><br>
 
 <br>
 Train_losses:<br>
-<img src="./asset/Skin_Cancer_train_losses_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_train_losses_at_epoch_35_0815.png" width="740" height="auto"><br>
 
 <br>
 <h2>
@@ -258,6 +259,7 @@ python ../../EfficientNetV2Inferencer.py ^
   --model_dir=./models ^
   --fine_tuning=True ^
   --trainable_layers_ratio=0.4 ^
+  --dropout_rate=0.3 ^
   --image_path=./test/*.jpg ^
   --eval_image_size=480 ^
   --label_map=./label_map.txt ^
@@ -297,11 +299,11 @@ More experiments will be needed to improve accuracy.<br>
 
 <br>
 Inference console output:<br>
-<img src="./asset/Skin_Cancer_infer_console_output_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_infer_console_output_at_epoch_35_0815.png" width="740" height="auto"><br>
 <br>
 
 Inference result (inference.csv):<br>
-<img src="./asset/Skin_Cancer_inference_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_inference_at_epoch_35_0815.png" width="740" height="auto"><br>
 <br>
 <h2>
 <a id="6">6 Evaluation</a>
@@ -323,6 +325,7 @@ python ../../EfficientNetV2Evaluator.py ^
   --evaluation_dir=./evaluation ^
   --fine_tuning=True ^
   --trainable_layers_ratio=0.4 ^
+  --dropout_rate=0.3 ^
   --eval_image_size=480 ^
   --mixed_precision=True ^
   --debug=False 
@@ -338,12 +341,12 @@ This evaluation command will generate <a href="./projects/Skin-Cancer/evaluation
 <br>
 <br>
 Evaluation console output:<br>
-<img src="./asset/Skin_Cancer_evaluate_console_output_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_evaluate_console_output_at_epoch_35_0815.png" width="740" height="auto"><br>
 <br>
 
 <br>
 Classification report:<br>
-<img src="./asset/Skin_Cancer_classification_report_at_epoch_28_0813.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_classification_report_at_epoch_35_0815.png" width="740" height="auto"><br>
 <br>
 Confusion matrix:<br>
 <img src="./projects/Skin-Cancer-HAM10000/evaluation/confusion_matrix.png" width="740" height="auto"><br>

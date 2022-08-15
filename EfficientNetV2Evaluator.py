@@ -72,6 +72,8 @@ def define_flags():
   # 2022/07/20
   flags.DEFINE_integer('eval_image_size', None, 'Image size.')
   flags.DEFINE_string('data_dir', './Testing', 'Testing data directory.')
+  # 2022/08/14
+  flags.DEFINE_float('dropout_rate',  0.3, 'Dropout rate.')
   
   flags.DEFINE_string('strategy', 'gpu', 'Strategy: tpu, gpus, gpu.')
   flags.DEFINE_integer('num_classes', 10, 'Number of classes.')
