@@ -1,4 +1,4 @@
-<h2>EfficientNet-Skin-Cancer (Updated: 2022/08/15)</h2>
+<h2>EfficientNet-Skin-Cancer (Updated: 2022/08/16)</h2>
 <a href="#1">1 EfficientNetV2 Skin Cancer HAM10000 Classification </a><br>
 <a href="#1.1">1.1 Clone repository</a><br>
 <a href="#1.2">1.2 Install Python packages</a><br>
@@ -30,8 +30,11 @@ However, we have used
 <a href="https://drive.google.com/file/d/1OqRiuFArflpw-8Anm2UV4EdyfS77ANTA/view?usp=sharing">Resampled HAM10000</a>
  dataset created by <a href="https://github.com/martian-antillia/ImageDatasetResampler">ImageDatasetResampler</a>.
 <br>
-<br>We use python 3.8 and tensorflow 2.8.0 environment on Windows 11.<br>
-  
+<br>We use python 3.8 and tensorflow 2.8.0 environment on Windows 11.<br><br>
+<li>
+2022/08/16: Updated data_generator.config to improve inference accuracy.
+</li>
+<br>  
 <h3>
 <a id="1.1">1.1 Clone repository</a>
 </h3>
@@ -174,17 +177,16 @@ python ../../EfficientNetV2ModelTrainer.py ^
   --data_augmentation=True ^
   --fine_tuning=True ^
   --monitor=val_loss ^
-  --learning_rate=0.0001 ^
+  --learning_rate=0.0002 ^
   --trainable_layers_ratio=0.4 ^
   --dropout_rate=0.3 ^
   --num_epochs=50 ^
   --batch_size=4 ^
-  --patience=12 ^
+  --patience=10 ^
   --debug=True  
 </pre>
 , where data_generator.config is the following:<br>
 <pre>
-; data_generation.config
 ; data_generation.config
 
 [training]
@@ -194,7 +196,7 @@ samplewise_center  = False
 featurewise_std_normalization=True
 samplewise_std_normalization =False
 zca_whitening                =False
-rotation_range     = 180
+rotation_range     = 90
 horizontal_flip    = True
 vertical_flip      = True
  
@@ -212,7 +214,7 @@ samplewise_center  = False
 featurewise_std_normalization=True
 samplewise_std_normalization =False
 zca_whitening                =False
-rotation_range     = 180
+rotation_range     = 90
 horizontal_flip    = True
 vertical_flip      = True
 width_shift_range  = 0.1
@@ -232,14 +234,14 @@ Furthermore, it will generate a <a href="./projects/Skin-Cancer-HAM10000/eval/tr
 and <a href="./projects/Skin-Cancer-HAM10000/eval/train_losses.csv">train_losses</a> files
 <br>
 Training console output:<br>
-<img src="./asset/Skin_Cancer_train_console_output_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_train_console_output_at_epoch_26_0816.png" width="740" height="auto"><br>
 <br>
 Train_accuracies:<br>
-<img src="./asset/Skin_Cancer_accuracies_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_accuracies_at_epoch_26_0816.png" width="740" height="auto"><br>
 
 <br>
 Train_losses:<br>
-<img src="./asset/Skin_Cancer_train_losses_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_train_losses_at_epoch_26_0816.png" width="740" height="auto"><br>
 
 <br>
 <h2>
@@ -299,11 +301,11 @@ More experiments will be needed to improve accuracy.<br>
 
 <br>
 Inference console output:<br>
-<img src="./asset/Skin_Cancer_infer_console_output_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_infer_console_output_at_epoch_26_0816.png" width="740" height="auto"><br>
 <br>
 
 Inference result (inference.csv):<br>
-<img src="./asset/Skin_Cancer_inference_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_inference_at_epoch_26_0816.png" width="740" height="auto"><br>
 <br>
 <h2>
 <a id="6">6 Evaluation</a>
@@ -341,12 +343,12 @@ This evaluation command will generate <a href="./projects/Skin-Cancer/evaluation
 <br>
 <br>
 Evaluation console output:<br>
-<img src="./asset/Skin_Cancer_evaluate_console_output_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_evaluate_console_output_at_epoch_26_0816.png" width="740" height="auto"><br>
 <br>
 
 <br>
 Classification report:<br>
-<img src="./asset/Skin_Cancer_classification_report_at_epoch_35_0815.png" width="740" height="auto"><br>
+<img src="./asset/Skin_Cancer_classification_report_at_epoch_26_0816.png" width="740" height="auto"><br>
 <br>
 Confusion matrix:<br>
 <img src="./projects/Skin-Cancer-HAM10000/evaluation/confusion_matrix.png" width="740" height="auto"><br>

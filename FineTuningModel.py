@@ -88,6 +88,9 @@ class FineTuningModel:
           layer.trainable = False
         else:
           layer.trainable = True
+    else:
+      # 2022/08/16 Transfer Learning
+      self.base_model.trainable = False
 
     self.show_layers()
     input_shape = [image_size, image_size, 3]
