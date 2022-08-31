@@ -28,6 +28,7 @@ import tensorflow as tf
 #from tf.keras.callbacks import Callback
 
 sys.path.append('../../')
+from LineGraph import LineGraph
 
 
 # This class will send a text messge to notify a progress status of traing proccess
@@ -100,3 +101,9 @@ class EpochChangeCallback(tf.keras.callbacks.Callback):
  
     except Exception as ex:
         traceback.print_exc()
+
+  def save_eval_graphs(self):
+    lineGraph = LineGraph()
+    lineGraph.plot(self.train_losses_file)
+    lineGraph.plot(self.train_accuracies_file)
+

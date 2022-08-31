@@ -4,7 +4,7 @@ python ../../EfficientNetV2Inferencer.py ^
   --model_dir=./models ^
   --fine_tuning=True ^
   --trainable_layers_ratio=0.4 ^
-  --dropout_rate=0.3 ^
+  --dropout_rate=0.5 ^
   --image_path=./test/*.jpg ^
   --eval_image_size=480 ^
   --label_map=./label_map.txt ^

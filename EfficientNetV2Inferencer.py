@@ -142,16 +142,18 @@ class EfficientNetV2Inferencer:
       # image.path = ./somewhere/*.jpg
       image_files = glob.glob(FLAGS.image_path)
       #print(" {}".format(image_files))
+      image_size = FLAGS.eval_image_size
       print("--- eval_image_size {}".format(FLAGS.eval_image_size))
       print("\n--- image_path {}".format(FLAGS.image_path))
       for image_file in image_files:
+        # 2022/08/31
+        image = tf.keras.preprocessing.image.load_img(image_file, target_size=(image_size, image_size),
+            color_mode = 'rgb',
+            interpolation='nearest')
 
-        image = tf.io.read_file(image_file)
-        image = preprocessing.preprocess_image(
-          image, 
-          image_size  = FLAGS.eval_image_size, 
-          is_training = False)
-        # A tensor with a length 1 axis inserted at index axis.
+        image = tf.keras.preprocessing.image.img_to_array(image)
+        image = image*1.0/255.0
+
         image  = tf.expand_dims(image, 0)
         logits = self.model(image, training=False)
 

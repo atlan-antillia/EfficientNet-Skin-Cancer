@@ -64,3 +64,5 @@ def define_flags():
 
   flags.DEFINE_integer('patience', 0, 'Early stopping patience.')
   
+  flags.DEFINE_bool('valid_data_augmentation', True, 'Validation data augumentation flag.')
+  flags.DEFINE_integer('seed', 123, 'Seed for random.')

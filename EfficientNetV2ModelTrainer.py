@@ -42,6 +42,15 @@ import utils
 #import effnetv2_model
 
 import shutil
+import random as rn
+
+###
+
+# 2022/08/17
+#https://github.com/NVIDIA/framework-determinism/blob/master/doc/tensorflow.md
+os.environ['PYTHONHASHSEED'] = '0'
+#os.environ['TF_DETERMINISTIC_OPS'] = 'true'
+os.environ['TF_CUDNN_DETERMINISTIC'] = 'true'
 
 sys.path.append("../../")
 
@@ -67,6 +76,8 @@ else:
 class EfficientNetV2ModelTrainer:
   # Constructor
   def __init__(self):
+    self.reset_random_seeds(FLAGS.seed)    
+
     self.model = None
     self.num_epochs= FLAGS.num_epochs # 2 #@param {type:"integer"}
     image_size     = FLAGS.image_size 
@@ -104,6 +115,12 @@ class EfficientNetV2ModelTrainer:
     if not os.path.exists(model_dir):
       os.makedirs(model_dir)
     self.save_train_params(sys.argv, model_dir)
+
+  def reset_random_seeds(self, seed):
+    tf.random.set_seed(seed)
+    np.random.seed(seed)
+    rn.seed(seed)
+    tf.compat.v1.set_random_seed(seed)
 
 
   def save_train_params(self, argv, dir, section="train"):
@@ -221,7 +238,12 @@ class EfficientNetV2ModelTrainer:
       verbose=1
       )
 
+    #2022/08/31
+    epch_callback.save_eval_graphs()
+
+
 def main(_) -> None:
+
   trainer = EfficientNetV2ModelTrainer()
   trainer.compile()
   trainer.train_eval()

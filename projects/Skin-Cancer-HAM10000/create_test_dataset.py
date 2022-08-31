@@ -13,7 +13,7 @@
 # limitations under the License.
 # ==============================================================================
 
-# 2022/08/12 Copyright (C) antillia.com
+# 2022/08/22 Copyright (C) antillia.com
 
 import os
 import sys
@@ -50,6 +50,8 @@ def create_test_dataset(test_dir, target_dir, num=20):
     
 if __name__ == "__main__":
   test_dir = "./Resampled_HAM10000/Testing"
+
+  test_dir = "./Cropped_Resampled_HAM10000_300/Testing"
   dest_dir = "./test"
   try:
     if not os.path.exists(test_dir):
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     if not os.path.exists(dest_dir):
       os.makedirs(dest_dir)
 
-    create_test_dataset(test_dir, dest_dir, num=10)
+    create_test_dataset(test_dir, dest_dir, num=20)
 
   except:
     traceback.print_exc()
