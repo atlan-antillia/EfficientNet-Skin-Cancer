@@ -92,6 +92,12 @@ Please download the dataset from the following web site:
         └─test
      　...
 </pre>
+<br>
+The number of images in Training and Testing of Resampled_HAM10000 dataset:<br>
+<img src="./projects/Skin-Cancer-HAM10000/_Resampled_HAM10000_.png">
+<br>
+
+<br>
 Resampled_HAM10000/Training/nv:<br>
 <img src="./asset/Skin_Cancer_Resampled_HAM10000_Training_nv.png" width="840" height="auto">
 <br> 
